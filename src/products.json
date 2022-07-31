@@ -1,0 +1,18 @@
+[
+    {
+        "id": "spelljammer-adventures-in-space",
+        "title": "Spelljammer: Adventures in Space",
+        "category": "sourcebooks",
+        "price": 49.99,
+        "featured": true,
+        "pre-order": true
+    },
+    {
+        "id": "journeys-through-the-radiant-citadel",
+        "title": "Journeys through the Radiant Citadel",
+        "category": "adventures",
+        "price": 29.99,
+        "featured": true,
+        "pre-order": false
+    }
+]

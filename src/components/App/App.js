@@ -1,10 +1,34 @@
-import React from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom'
+import { CartProvider } from "../../context/cartContext"
 /* styles */
-import './App.css';
+import './App.css'
 /* components */
+import Header from '../Header'
+import Footer from '../Footer'
+import LoginPage from '../LoginPage'
+import ProductListing from '../ProductListing/ProductListing'
+import ProductDetail from '../ProductDetail'
+import Cart from '../Cart'
 
 function App() {
-    return (<h1>App running...</h1>)
+    return (
+        <CartProvider>
+            <div className='app'>
+                <Header/>
+                <Routes>
+                    <Route index path='/' element={<Navigate to="/marketplace" replace />} />
+                    <Route index path='/marketplace' element={<ProductListing/>} />
+                    <Route path='/marketplace/:categoryId' element={<ProductListing/>} />
+                    <Route path='/marketplace/:categoryId/:productId' element={<ProductDetail/>} />
+                    <Route index path='/marketplace/cart' element={<Cart/>} />
+                    <Route path='/register' element={<LoginPage register={true}/>} />
+                    <Route path='/sign-in' element={<LoginPage register={false}/>} />
+                    <Route path='*' element={<p style={{ textAlign: 'center' }}>oops! we couldn't find that</p>} />
+                </Routes>
+                <Footer/>
+            </div>
+        </CartProvider>
+    )
 }
 
-export default App;
+export default App
