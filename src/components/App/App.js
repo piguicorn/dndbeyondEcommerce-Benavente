@@ -1,32 +1,39 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { CartProvider } from "../../context/cartContext"
+/* context */
+import { CartProvider } from '../../context/cartContext'
+import { AuthProvider } from '../../context/authContext'
 /* styles */
 import './App.css'
 /* components */
 import Header from '../Header'
 import Footer from '../Footer'
 import LoginPage from '../LoginPage'
+import UserProfile from '../UserProfile'
 import ProductListing from '../ProductListing/ProductListing'
 import ProductDetail from '../ProductDetail'
 import Cart from '../Cart'
 
 function App() {
+
     return (
         <CartProvider>
-            <div className='app'>
-                <Header/>
-                <Routes>
-                    <Route index path='/' element={<Navigate to="/marketplace" replace />} />
-                    <Route index path='/marketplace' element={<ProductListing/>} />
-                    <Route path='/marketplace/:categoryId' element={<ProductListing/>} />
-                    <Route path='/marketplace/:categoryId/:productId' element={<ProductDetail/>} />
-                    <Route index path='/marketplace/cart' element={<Cart/>} />
-                    <Route path='/register' element={<LoginPage register={true}/>} />
-                    <Route path='/sign-in' element={<LoginPage register={false}/>} />
-                    <Route path='*' element={<p style={{ textAlign: 'center' }}>oops! we couldn't find that</p>} />
-                </Routes>
-                <Footer/>
-            </div>
+            <AuthProvider>
+                <div className='app'>
+                    <Header/>
+                    <Routes>
+                        <Route index path='/' element={<Navigate to='/marketplace' replace />} />
+                        <Route index path='/marketplace' element={<ProductListing/>} />
+                        <Route path='/marketplace/:categoryId' element={<ProductListing/>} />
+                        <Route path='/marketplace/:categoryId/:productId' element={<ProductDetail/>} />
+                        <Route index path='/marketplace/cart' element={<Cart/>} />
+                        <Route path='/register' element={<LoginPage register={true}/>} />
+                        <Route path='/sign-in' element={<LoginPage register={false}/>} />
+                        <Route path='/profile' element={<UserProfile />} />
+                        <Route path='*' element={<p style={{ textAlign: 'center' }}>oops! we couldn't find that</p>} />
+                    </Routes>
+                    <Footer/>
+                </div>
+            </AuthProvider>
         </CartProvider>
     )
 }

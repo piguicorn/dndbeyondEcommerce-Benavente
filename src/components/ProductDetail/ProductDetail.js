@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import productList from '../../products.json'
 /* context */
 import { CartContext } from '../../context/cartContext'
@@ -20,9 +20,11 @@ function ProductDetail() {
       {product &&
         <section>
           <h1>{product.title}</h1>
-          <button onClick={() => addToCart(productId)}>
-            {inCart.includes(productId) ? 'In Cart' : 'Add to Cart'}
-          </button>
+          {
+            inCart.includes(productId) ? 
+            <Link to='/marketplace/cart'>In Cart</Link> :
+            <button onClick={() => addToCart(productId)}>Add to Cart</button>
+          }
         </section>}
     </main>
   )
