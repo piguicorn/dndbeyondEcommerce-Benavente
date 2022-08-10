@@ -4,7 +4,7 @@ import { getAuth, createUserWithEmailAndPassword, updateProfile, signOut, signIn
 export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-    const [currentUser, setCurrentUser] = useState(null)
+    const [currentUser, setCurrentUser] = useState(null);
 
     const createNewUser = (displayName, email, password) => {
         const auth = getAuth();
@@ -15,14 +15,14 @@ export function AuthProvider({ children }) {
                 console.log('user created', user);
 
                 // adds user's name to the profile after creating the account
-                updateProfile(auth.currentUser, { displayName })
+                updateProfile(auth.currentUser, { displayName });
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
 
                 console.log('error ', errorCode, errorMessage);
-            })
+            });
     }
 
     const login = (email, password) => {
@@ -57,11 +57,11 @@ export function AuthProvider({ children }) {
 
         deleteUser(user).then(() => {
             // User deleted.
-            setCurrentUser(null)
-            window.location.href = '/marketplace'
+            setCurrentUser(null);
+            window.location.href = '/marketplace';
         }).catch((error) => {
             // An error ocurred
-            console.log(error)
+            console.log(error);
         });
     }
 
@@ -69,31 +69,10 @@ export function AuthProvider({ children }) {
         const auth = getAuth();
         const user = auth.currentUser;
 
-        updateProfile(user, {displayName: name})
-        .then(updateEmail(user, email))
-        .then(() => password ? updatePassword(user, password) : null)
-        .catch((error) => console.log(error))
-
-        /*
-        updateProfile(auth.currentUser, {
-            displayName: name, email
-        }).then(() => {
-            // Profile updated!
-            console.log('profile updated')
-
-            if (password) {
-                updatePassword(auth.currentUser, password).then(() => {
-                    // Update successful.
-                }).catch((error) => {
-                    // An error ocurred
-                    console.log(error)
-                });
-            }
-
-        }).catch((error) => {
-            // An error occurred
-            console.log(error)
-        });*/
+        updateProfile(user, { displayName: name })
+            .then(updateEmail(user, email))
+            .then(() => password ? updatePassword(user, password) : null)
+            .catch((error) => console.log(error));
     }
 
     useEffect(() => {
@@ -107,5 +86,5 @@ export function AuthProvider({ children }) {
         <AuthContext.Provider value={[currentUser, createNewUser, login, logout, deleteAccount, updateInfo]}>
             {children}
         </AuthContext.Provider>
-    );
-};
+    )
+}

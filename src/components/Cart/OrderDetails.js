@@ -5,11 +5,10 @@ import { CartContext } from '../../context/cartContext';
 /* components */
 import ProductsOverview from './ProductsOverview'
 import LoginNav from '../LoginNav'
-import OrderTotal from './OrderTotal'
-import CostumerInfo from './CostumerInfo'
+import CustomerInfo from './CustomerInfo';
 
 
-export default function OrderDetails({setOrderNumber}) {
+export default function OrderDetails({ setOrderNumber }) {
     const [step, setStep] = useState('products-overview');
 
     const [currentUser] = useContext(AuthContext);
@@ -17,7 +16,7 @@ export default function OrderDetails({setOrderNumber}) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+
         setStep('products-overview');
         clearCart();
 
@@ -26,21 +25,20 @@ export default function OrderDetails({setOrderNumber}) {
 
     return (
         <div className="order-details">
-            <section>
-                <h2>Order Details</h2>
-                {
-                    step === 'products-overview' ?
-                        <>
-                            <ProductsOverview />
-                            {currentUser ? <button onClick={() => setStep('costumer-info')}>Procceed to checkout</button> : <LoginNav />}
-                        </> :
-                        <form onSubmit={handleSubmit}>
-                            <CostumerInfo />
-                            <button onClick={() => setStep('products-overview')}>Cancel</button><input type='submit' value='Confirm'/>
-                        </form>
-                }
-            </section>
-            <OrderTotal />
+            <h2>{step === 'customer-info' ? 'Customer Info' : 'Order Details'}</h2>
+            {
+                step === 'products-overview' ?
+
+                    <>
+                        <ProductsOverview />
+                        {currentUser ? <button onClick={() => setStep('customer-info')} className='checkout-btn'>Procceed to checkout</button> : <LoginNav ctaText={{ signin: 'SIGN IN', signup: 'CREATE ACCOUNT' }} />}
+                    </> :
+
+                    <form onSubmit={handleSubmit} className='customer-info'>
+                        <CustomerInfo />
+                        <input type='submit' value='Confirm' className='checkout-btn'/><button onClick={() => setStep('products-overview')} className='checkout-btn cancel-btn'>Cancel</button>
+                    </form>
+            }
         </div>
     )
 }

@@ -1,7 +1,7 @@
-import { useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom';
 
 function Footer() {
-  const path = useLocation().pathname
+  const path = useLocation().pathname;
 
   return (
     <>
@@ -13,4 +13,5 @@ function Footer() {
     </>
   )
 }
-export default Footer
+
+export default Footer;

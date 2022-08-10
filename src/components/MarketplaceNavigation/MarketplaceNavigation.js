@@ -1,10 +1,12 @@
 import { NavLink } from "react-router-dom";
+/* styles */
+import './MarketplaceNavigation.css';
 
 function MarketplaceNavigation() {
     return (
-        <nav>
+        <nav className='marketplace-navigation'>
             <ul>
-                <li><NavLink to='/marketplace'>Featured</NavLink></li>
+                <li><NavLink to='/marketplace' end>Featured</NavLink></li>
                 <li><NavLink to='/marketplace/bundles'>Bundles</NavLink></li>
                 <li><NavLink to='/marketplace/sourcebooks'>Sourcebooks</NavLink></li>
                 <li><NavLink to='/marketplace/adventures'>Adventures</NavLink></li>
@@ -12,4 +14,5 @@ function MarketplaceNavigation() {
         </nav>
     )
 }
-export default MarketplaceNavigation
+
+export default MarketplaceNavigation;

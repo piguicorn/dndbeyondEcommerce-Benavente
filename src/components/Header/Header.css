@@ -1,0 +1,40 @@
+:root {
+    --bg-color: #090809;
+    --cta-color: #BC0F0F;
+    --border-color: #1cd2c0;
+}
+
+header {
+    height: 64px;
+    width: 100%;
+    background-color: var(--bg-color);
+    border-bottom: 2px solid var(--border-color);
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+}
+
+header a {
+    color: white;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    width: 150px;
+    height: 40px;
+}
+
+header .login-nav a {
+    margin: 0 10px;
+    display: inline-block;
+    font-size: 13px;
+}
+
+header .login-nav a.signup {
+    font-size: 16px;
+    background-color: var(--cta-color);
+    padding: 9px 20px;
+}

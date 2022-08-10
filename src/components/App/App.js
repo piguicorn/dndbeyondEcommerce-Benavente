@@ -1,17 +1,17 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom';
 /* context */
-import { CartProvider } from '../../context/cartContext'
-import { AuthProvider } from '../../context/authContext'
+import { CartProvider } from '../../context/cartContext';
+import { AuthProvider } from '../../context/authContext';
 /* styles */
-import './App.css'
+import './App.css';
 /* components */
-import Header from '../Header'
-import Footer from '../Footer'
-import LoginPage from '../LoginPage'
-import UserProfile from '../UserProfile'
-import ProductListing from '../ProductListing/ProductListing'
-import ProductDetail from '../ProductDetail'
-import Cart from '../Cart'
+import Header from '../Header';
+// import Footer from '../Footer';
+import LoginPage from '../LoginPage';
+import UserProfile from '../UserProfile';
+import ProductListing from '../ProductListing/ProductListing';
+import ProductDetail from '../ProductDetail';
+import Cart from '../Cart';
 
 function App() {
 
@@ -31,11 +31,11 @@ function App() {
                         <Route path='/profile' element={<UserProfile />} />
                         <Route path='*' element={<p style={{ textAlign: 'center' }}>oops! we couldn't find that</p>} />
                     </Routes>
-                    <Footer/>
+                    {/*<Footer/>*/}
                 </div>
             </AuthProvider>
         </CartProvider>
     )
 }
 
-export default App
+export default App;

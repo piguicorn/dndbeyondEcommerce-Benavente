@@ -1,27 +1,33 @@
-import { useContext, useState } from 'react'
+import { useContext, useState } from 'react';
 /* context */
-import { CartContext } from '../../context/cartContext'
+import { CartContext } from '../../context/cartContext';
+/* styles */
+import './Cart.css';
 /* components */
-import TitleSection from '../TitleSection'
-import OrderDetails from './OrderDetails'
+import OrderDetails from './OrderDetails';
 
 function Cart() {
   const [orderNumber, setOrderNumber] = useState(null);
-  const [inCart] = useContext(CartContext)
+  const [inCart] = useContext(CartContext);
 
   return (
-    <main>
-      <TitleSection />
+    <main className='container my-cart'>
+      <h1>My Cart</h1>
       {
+        /* checkout process */
         inCart.length > 0 ?
         <OrderDetails setOrderNumber={setOrderNumber}/> :
 
+        /* order completed */
         orderNumber ?
-        <p>Your order with number {orderNumber} was completed successfully.</p> :
+        <p>Your order with number 
+          <span style={{fontWeight: 'bold', textDecoration: 'underline', margin: '0 8px'}}>{orderNumber}</span> 
+          was completed successfully.</p> :
 
+        /* no products in cart */
         <p>Your cart is empty.</p>
       }
     </main>
   )
 }
-export default Cart
+export default Cart;

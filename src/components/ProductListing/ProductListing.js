@@ -1,38 +1,51 @@
-import { useEffect, useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
-import productList from '../../products.json'
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { collection, getDocs, getFirestore, query, where } from "firebase/firestore";
+/* styles */
+import './ProductListing.css'
 /* components */
-import TitleSection from '../TitleSection'
-import MarketplaceNavigation from '../MarketplaceNavigation/MarketplaceNavigation'
+import HeadingSection from '../HeadingSection';
+import MarketplaceNavigation from '../MarketplaceNavigation/MarketplaceNavigation';
+import ProductListItem from './ProductListItem';
 
 function ProductListing() {
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const { categoryId } = useParams();
 
   useEffect(() => {
-    const listing = categoryId ? productList.filter(product => product.category === categoryId) : productList.filter(product => product.featured)
-    setProducts(listing)
+    const db = getFirestore();
+    const queryCollection = collection(db, 'products');
+    const filteredQueryCollection = categoryId ? query(queryCollection, where('category', '==', categoryId)) : query(queryCollection, where('featured', '==', true));
+    
+    getDocs(filteredQueryCollection)
+    .then(res => {
+      setProducts(res.docs.map(prod => (
+        {id: prod.id, ...prod.data()}
+      )))
+    }).catch(err => console.log(err))
+    .finally(setLoading(false))    
   }, [categoryId])
 
-    return (
-      <main>
-        <TitleSection />
-        <section>
-          <MarketplaceNavigation/>
-          <ul>
-            {
-              products.map(product => (
-                <li key={product.id}>
-                  {product.title} 
-                  <Link to={`/marketplace/${product.category}/${product.id}`}>Link</Link>
-                </li>
-              ))
-            }
-          </ul>
-        </section>
-      </main>
-    )
-  }
+  return (
+    <main className='product-listing'>
+      <HeadingSection />
+      <section className='container'>
+        <MarketplaceNavigation />
+        {loading ? 'loading' : null}
+        <ul className='list'>
+          {
+            products.map(product => (
+              <li key={product.id} className='list-item'>
+                <ProductListItem product={product}/>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    </main>
+  )
+}
 
-  export default ProductListing
+export default ProductListing;

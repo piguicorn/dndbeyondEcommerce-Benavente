@@ -1,32 +1,30 @@
-import { useEffect, useState, useContext } from 'react'
-import { useParams, Link } from 'react-router-dom'
-import productList from '../../products.json'
-/* context */
-import { CartContext } from '../../context/cartContext'
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getFirestore, doc, getDoc } from 'firebase/firestore';
+/* styles */
+import './ProductDetail.css';
 /* components */
-import TitleSection from '../TitleSection'
+import HeadingSection from '../HeadingSection';
 
 function ProductDetail() {
-  const [product, setProduct] = useState()
+  const [product, setProduct] = useState();
 
-  const { productId } = useParams()
-  const [inCart, addToCart] = useContext(CartContext)
+  const { productId } = useParams();
 
-  useEffect(() => setProduct(productList.find(product => product.id === productId)), [productId])
+  useEffect(() => {
+    const db = getFirestore();
+    const queryProduct = doc(db, 'products', productId)
+    getDoc(queryProduct)
+      .then(res => setProduct({ id: res.id, ...res.data()}))
+      .catch(err => console.log(err))
+  }, [productId])
 
   return (
-    <main>
-      <TitleSection />
-      {product &&
-        <section>
-          <h1>{product.title}</h1>
-          {
-            inCart.includes(productId) ? 
-            <Link to='/marketplace/cart'>In Cart</Link> :
-            <button onClick={() => addToCart(productId)}>Add to Cart</button>
-          }
-        </section>}
+    <main className='product-detail'>
+      <HeadingSection product={product} />
+      {product ? <p className='product-description container'>{product.description}</p> : 'Loading...'}
     </main>
   )
 }
-export default ProductDetail
+
+export default ProductDetail;

@@ -1,26 +1,24 @@
-import { useState, useContext } from 'react'
-import { Navigate } from 'react-router-dom';
+import { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 /* context */
 import { AuthContext } from '../../context/authContext'
 
 export default function SignUp() {
-    const [userInfo, setUserInfo] = useState({ name: '', email: '', password: '' })
+    const [userInfo, setUserInfo] = useState({ name: '', email: '', password: '' });
 
-    const [currentUser, createNewUser] = useContext(AuthContext)
+    const [/* currentUser */, createNewUser] = useContext(AuthContext);
 
     const handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
-        const {name, email, password} = userInfo
-        if (name && email && password) createNewUser(name, email, password)
+        const {name, email, password} = userInfo;
+        if (name && email && password) createNewUser(name, email, password);
     }
 
 
     return (
-        currentUser ?
-        <Navigate to='/marketplace' replace /> :
-        <main>
-            <h1>Sign Up</h1>
+        <section>
+            <h1>Create account</h1>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="name">Name:</label>
@@ -34,8 +32,9 @@ export default function SignUp() {
                     <label htmlFor="password">Password:</label>
                     <input type="password" id="password" name="password" value={userInfo.password} onChange={(e) => setUserInfo({ ...userInfo, password: e.target.value })} required/>
                 </div>
-                <input type="submit" value="Send"/>
+                <input type="submit" value="Register"/>
             </form>
-        </main>
+            <p>Already have an account? <Link to='/sign-in'>Sign In</Link></p>
+        </section>
     )
 }
