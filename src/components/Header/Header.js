@@ -20,9 +20,11 @@ function Header() {
                 <header>
                     <div className='container'>
                         <Link to='/marketplace'>
-                            <img className='logo' src='https://www.dndbeyond.com/content/1-0-2140-0/skins/waterdeep/images/dnd-beyond-logo.svg' alt='home'/>
+                            <img className='logo' src='https://www.dndbeyond.com/content/1-0-2140-0/skins/waterdeep/images/dnd-beyond-logo.svg' alt='home' />
                         </Link>
-                        {currentUser ? <Link to='/profile' style={{marginRight: 10, textDecoration: 'underline'}}>Profile</Link> : <LoginNav ctaText={{signin: 'Sign In', signup: 'Free Sign Up'}}/>}
+                        {currentUser ?
+                            <Link to='/profile' style={{ marginRight: 10, textDecoration: 'underline' }}>Profile</Link> :
+                            <LoginNav ctaText={{ signin: 'Sign In', signup: 'Free Sign Up' }} />}
                     </div>
                 </header>
             }

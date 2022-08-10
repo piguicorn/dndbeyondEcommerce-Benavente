@@ -1,19 +1,20 @@
 import { createContext, useState } from 'react';
+import { containsObject } from '../utils';
 
 export const CartContext = createContext()
 
 export function CartProvider({children}) {
     const [inCart, setInCart] = useState([]);
 
-    const addToCart = (productId) => {
-        if (inCart.includes(productId)) return ;
-        setInCart(prevInCart => [...prevInCart, productId]);
+    const addToCart = (product) => {
+        if (containsObject(product, inCart)) return ;
+        setInCart(prevInCart => [...prevInCart, product]);
     }
 
     const clearCart = () => setInCart([]);
 
-    const removeFromCart = (productId) => {
-        setInCart(prevInCart => prevInCart.filter(product => product !== productId));
+    const removeFromCart = (product) => {
+        setInCart(prevInCart => prevInCart.filter(prod => prod.id !== product.id));
     }
 
     return (

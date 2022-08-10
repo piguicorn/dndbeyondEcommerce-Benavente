@@ -6,7 +6,7 @@ export const AuthContext = createContext();
 export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState(null);
 
-    const createNewUser = (displayName, email, password) => {
+    const createNewUser = (displayName, email, password, setErrorMessage) => {
         const auth = getAuth();
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
@@ -17,35 +17,19 @@ export function AuthProvider({ children }) {
                 // adds user's name to the profile after creating the account
                 updateProfile(auth.currentUser, { displayName });
             })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-
-                console.log('error ', errorCode, errorMessage);
-            });
+            .catch((error) => setErrorMessage(error.message));
     }
 
-    const login = (email, password) => {
+    const login = (email, password, setErrorMessage) => {
         const auth = getAuth();
         signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in 
-                //const user = userCredential.user;
-                //window.location.href = '/marketplace'
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-
-                console.log(errorCode, errorMessage)
-            });
+            .catch((error) => setErrorMessage(error.message));
     }
 
     const logout = () => {
         const auth = getAuth();
         signOut(auth).then(() => {
-            setCurrentUser(null)
-            window.location.href = '/marketplace'
+            setCurrentUser(null);
         }).catch((error) => {
             console.log('error signing out', error);
         });
@@ -58,21 +42,21 @@ export function AuthProvider({ children }) {
         deleteUser(user).then(() => {
             // User deleted.
             setCurrentUser(null);
-            window.location.href = '/marketplace';
+
         }).catch((error) => {
             // An error ocurred
             console.log(error);
         });
     }
 
-    const updateInfo = ({ name, email, password }) => {
+    const updateInfo = ({ name, email, password }, setErrorMessage) => {
         const auth = getAuth();
         const user = auth.currentUser;
 
         updateProfile(user, { displayName: name })
             .then(updateEmail(user, email))
             .then(() => password ? updatePassword(user, password) : null)
-            .catch((error) => console.log(error));
+            .catch((error) => setErrorMessage(error.message));
     }
 
     useEffect(() => {

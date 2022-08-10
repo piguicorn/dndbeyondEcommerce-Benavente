@@ -10,7 +10,7 @@ function CartWidget() {
 
     return (
         <Link to='/marketplace/cart' className='cart-widget'>
-            <img src='https://www.dndbeyond.com/content/1-0-2140-0/skins/marketplace/assets/action-items/cart.png' alt=''/>
+            <img src='https://www.dndbeyond.com/content/1-0-2140-0/skins/marketplace/assets/action-items/cart.png' alt='' />
             Cart {inCart.length > 0 ? `(${inCart.length})` : null}
         </Link>
     )

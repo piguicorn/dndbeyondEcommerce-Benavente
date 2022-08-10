@@ -11,12 +11,12 @@ export default function ProductListItem({ product }) {
             <div className='item-info'>
                 {
                     product.featured &&
-                    <Badge text='Featured'/>
+                    <Badge text='Featured' />
                 }
                 <Link to={`/marketplace/${product.category}/${product.id}`}><h2>{product.title}</h2></Link>
                 <p className='subheading'>{product.subtitle}</p>
                 <p className='price'>${product.price}</p>
-                <AddToCartBtn productId={product.id}/>
+                <AddToCartBtn product={product} />
             </div>
         </>
     )

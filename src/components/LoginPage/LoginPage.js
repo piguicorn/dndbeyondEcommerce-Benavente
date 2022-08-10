@@ -14,16 +14,16 @@ function LoginPage({ register }) {
 
   return (
     currentUser ?
-    <Navigate to='/marketplace' replace /> :
-    <div className='login-page'>
-      <div className='side-img'></div>
-      <main>
-        <Link to='/marketplace'>
-          <img className='logo' src='https://www.dndbeyond.com/content/skins/waterdeep/images/dnd-beyond-logo-black.svg' alt='home' />
-        </Link>
-        {register ? <SignUp /> : <SignIn />}
-      </main>
-    </div>
+      <Navigate to='/marketplace' replace /> :
+      <div className='login-page'>
+        <div className='side-img'></div>
+        <main>
+          <Link to='/marketplace'>
+            <img className='logo' src='https://www.dndbeyond.com/content/skins/waterdeep/images/dnd-beyond-logo-black.svg' alt='home' />
+          </Link>
+          {register ? <SignUp /> : <SignIn />}
+        </main>
+      </div>
   )
 }
 

@@ -1,5 +1,4 @@
 .product-listing>.container {
-    display: flex;
     padding: 0 10px;
 }
 
@@ -10,7 +9,6 @@
 }
 
 .product-listing .list-item {
-    display: flex;
     margin-bottom: 60px;
 }
 
@@ -43,10 +41,15 @@
 @media screen and (min-width: 768px) {
     .product-listing>.container {
         padding: 0 60px;
+        display: flex;
     }
 
     .product-listing .list {
         padding-left: 60px;
+    }
+
+    .product-listing .list-item {
+        display: flex;
     }
 
     .product-listing .list-item .cover {

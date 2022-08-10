@@ -32,3 +32,18 @@ ul {
     height: 100%;
     margin: 0 auto;
 }
+
+.loader {
+    margin: auto;
+    margin-top: 50px;
+    display: block;
+}
+
+span.form-error {
+    color: #d11919;
+    background-color: #faf3f6;
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    border-radius: 3px;
+}

@@ -16,16 +16,16 @@ function Cart() {
       {
         /* checkout process */
         inCart.length > 0 ?
-        <OrderDetails setOrderNumber={setOrderNumber}/> :
+          <OrderDetails setOrderNumber={setOrderNumber} orderNumber={orderNumber} /> :
 
-        /* order completed */
-        orderNumber ?
-        <p>Your order with number 
-          <span style={{fontWeight: 'bold', textDecoration: 'underline', margin: '0 8px'}}>{orderNumber}</span> 
-          was completed successfully.</p> :
+          /* order completed */
+          orderNumber ?
+            <p>Your order with id
+              <span style={{ fontWeight: 'bold', textDecoration: 'underline', margin: '0 8px' }}>{orderNumber}</span>
+              was completed successfully.</p> :
 
-        /* no products in cart */
-        <p>Your cart is empty.</p>
+            /* no products in cart */
+            <p>Your cart is empty.</p>
       }
     </main>
   )
