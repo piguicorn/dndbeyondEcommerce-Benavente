@@ -6,7 +6,7 @@ import { AuthProvider } from '../../context/authContext';
 import './App.css';
 /* components */
 import Header from '../Header';
-// import Footer from '../Footer';
+import Footer from '../Footer';
 import LoginPage from '../LoginPage';
 import UserProfile from '../UserProfile';
 import ProductListing from '../ProductListing/ProductListing';
@@ -33,7 +33,7 @@ function App() {
                         <Route path='/not-found' element={<PageNotFound />} />
                         <Route path='*' element={<Navigate to='/not-found' replace />} />
                     </Routes>
-                    {/*<Footer/>*/}
+                    <Footer/>
                 </div>
             </AuthProvider>
         </CartProvider>

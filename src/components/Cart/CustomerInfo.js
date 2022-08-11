@@ -1,7 +1,50 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { addDoc, collection, getFirestore } from 'firebase/firestore';
+/* context */
+import { CartContext } from '../../context/cartContext';
+import { AuthContext } from '../../context/authContext';
 
-export default function CustomerInfo({ handleSubmit, setStep, errorMessage }) {
+export default function CustomerInfo({ setStep, setLoading, setOrderNumber }) {
     const [customerInfo, setCustomerInfo] = useState({ name: '', lastname: '', email: '', emailconf: '', phone: '' });
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const [inCart, /* addToCart */, clearCart] = useContext(CartContext);
+    const [currentUser] = useContext(AuthContext);
+
+    const handleSubmit = async (e, { name, lastname, email, emailconf, phone }) => {
+        e.preventDefault();
+
+        if (email !== emailconf) {
+            setErrorMessage('Emails don\'t match');
+            return ;
+        }
+
+        setLoading(true);
+
+        // creates (if doesn't already exist)
+        // a document in "orders" collection where the 
+        // info about the orders completed by this user will be stored
+        // and adds the info about the last order 
+        const orderData = {
+            state: 'generated',
+            date: new Date(),
+            customerData: {
+                name,
+                lastname,
+                email,
+                phone
+            },
+            products: inCart
+        }
+        const db = getFirestore();
+        const ref = await addDoc(collection(db, 'orders', currentUser.email, 'orders'), orderData)
+
+        setOrderNumber(ref.id.slice(0, 8).toUpperCase());
+
+        setStep('products-overview'); // restarts the checkout process
+        clearCart();
+        setLoading(false);
+    }
 
     return (
         <form onSubmit={(e) => handleSubmit(e, customerInfo)} className='customer-info'>

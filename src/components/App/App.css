@@ -17,6 +17,9 @@
 
 body {
     background: #f9f9f9 url(https://www.dndbeyond.com/content/1-0-2145-0/skins/waterdeep/images/background_texture.png) repeat;
+    position: relative;
+    min-height: 100vh;
+    padding-bottom: 60px;
 }
 
 a {

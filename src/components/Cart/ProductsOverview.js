@@ -2,7 +2,7 @@ import { useContext } from 'react';
 /* context */
 import { CartContext } from '../../context/cartContext';
 
-export default function ProductsOverview({ products }) {
+export default function ProductsOverview() {
     const [ inCart, /* addToCart */, clearCart, removeFromCart] = useContext(CartContext);
 
     return (
@@ -22,7 +22,7 @@ export default function ProductsOverview({ products }) {
                     <tbody>
                         {
                             
-                            products.map(product => {
+                            inCart.map(product => {
 
                                 return (
                                     <tr key={product.id}>

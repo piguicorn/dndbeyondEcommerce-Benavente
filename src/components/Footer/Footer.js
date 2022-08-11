@@ -1,4 +1,5 @@
 import { useLocation } from 'react-router-dom';
+import './Footer.css';
 
 function Footer() {
   const path = useLocation().pathname;
@@ -8,7 +9,9 @@ function Footer() {
       {
         path !== '/register' &&
         path !== '/sign-in' &&
-        <footer>Footer here</footer>
+        <footer>
+          <p>Made with ❤️ by <a href='https://github.com/piguicorn' target='_blanket'>@piguicorn</a></p>
+        </footer>
       }
     </>
   )
