@@ -1,6 +1,6 @@
 # Proyecto Final Curso React ([Coderhouse](https://www.coderhouse.com))
 
-Mi proyecto es una versión simplificada del [marketplace de D&D Beyond](https://www.coderhouse.com).
+Mi proyecto es una versión simplificada del [marketplace de D&D Beyond](https://www.dndbeyond.com/marketplace/).
 
 ## Estructura
 
