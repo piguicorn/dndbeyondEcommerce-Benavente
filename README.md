@@ -1,8 +1,8 @@
-#Proyecto Final Curso React (![Coderhouse](https://www.coderhouse.com))
+# Proyecto Final Curso React (![Coderhouse](https://www.coderhouse.com))
 
 Mi proyecto es una versión simplificada del ![marketplace de D&D Beyond](https://www.coderhouse.com).
 
-##Estructura
+## Estructura
 
 He decidido seguir la estructura de archivos recomendada y explicada en el siguiente artículo por Joshua Comeau, ya que me parece sencilla, limpia y clara:
 https://www.joshwcomeau.com/react/file-structure/
@@ -11,7 +11,7 @@ Algunos componentes que no tienen sentido por sí solos, se han mantenido en la 
 
 Otros que podrían parecer dependientes pero que se repiten a lo largo de la aplicación, como puede ser ```AddToCartBtn.js``` se han mantenido aparte, para facilitar la lectura y un código más limpio (ahorramos repetir código JS y el mismo CSS muchas veces).
 
-##Funcionalidades
+## Funcionalidades
 
 Las siguientes son las funcionalidades principales de la aplicación:
 
@@ -23,7 +23,7 @@ Las siguientes son las funcionalidades principales de la aplicación:
 
 - Compra. Está disponible una vista de carrito (Cart) donde se muestran los productos que fueron seleccionados (si los hay) con breves detalles y el total del precio. Si se decide seguir con el proceso de compra, se solicita algunos datos al comprador, generando una nueva entrada en la base de datos y un id de compra asociados a este usuario.
 
-##Cosas a mejorar/añadir
+## Cosas a mejorar/añadir
 
 Estas son algunas de las ideas que mejorarían la aplicación y que es posible que añada en el futuro:
 
