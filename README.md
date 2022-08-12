@@ -2,7 +2,7 @@
 
 Mi proyecto es una versión simplificada del [marketplace de D&D Beyond](https://www.dndbeyond.com/marketplace/).
 
-![preview](/preview.png)
+![preview](/dndbeyondEcommerce-Benavente/preview.png)
 
 ## Estructura
 
