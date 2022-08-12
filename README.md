@@ -2,6 +2,8 @@
 
 Mi proyecto es una versión simplificada del [marketplace de D&D Beyond](https://www.dndbeyond.com/marketplace/).
 
+![preview](preview.png)
+
 ## Estructura
 
 He decidido seguir la estructura de archivos recomendada y explicada en el siguiente artículo por Joshua Comeau, ya que me parece sencilla, limpia y clara:
